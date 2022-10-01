@@ -11,8 +11,8 @@ public class Player : MonoBehaviour
   private float activeMoveSpeed;
 
   [Header("Dash")]
-  [SerializeField] float startDashTime = 1f;
-  [SerializeField] float dashSpeed = 1f;
+  [SerializeField] float startDashTime = 0.2f;
+  [SerializeField] float dashSpeed = 16f;
   float currentDashTime;
   bool canDash = true;
  
@@ -24,13 +24,13 @@ public class Player : MonoBehaviour
   void Update()
   {
     var direction = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical"));
-    if(Input.GetKeyDown(KeyCode.LeftShift)) {
+    if(Input.GetKeyDown(KeyCode.LeftShift) && canDash) {
       StartCoroutine(Dash(direction));
     }
     direction.Normalize();
     rb.velocity = direction * activeMoveSpeed;
   }
-  
+
   IEnumerator Dash(Vector2 direction)
   {
     canDash = false;

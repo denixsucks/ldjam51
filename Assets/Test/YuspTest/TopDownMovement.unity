@@ -522,7 +522,7 @@ MonoBehaviour:
   MovementSpeed: 5
   rb: {fileID: 1865599041}
   startDashTime: 0.2
-  dashSpeed: 4
+  dashSpeed: 16
 --- !u!212 &1865599043
 SpriteRenderer:
   m_ObjectHideFlags: 0
