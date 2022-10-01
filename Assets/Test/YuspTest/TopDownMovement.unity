@@ -521,8 +521,41 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   MovementSpeed: 5
   rb: {fileID: 1865599041}
-  startDashTime: 0.2
-  dashSpeed: 16
+  startDashTime: 0.175
+  dashSpeed: 17
+  curve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0.9010948
+      value: 1.0461696
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    - serializedVersion: 3
+      time: 0.9867705
+      value: 1.0221531
+      inSlope: -8.8196945
+      outSlope: -8.8196945
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.30439195
+      outWeight: 0.32876742
+    - serializedVersion: 3
+      time: 1.0008199
+      value: 0.002380371
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 136
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
 --- !u!212 &1865599043
 SpriteRenderer:
   m_ObjectHideFlags: 0
