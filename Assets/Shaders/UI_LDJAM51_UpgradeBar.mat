@@ -30,7 +30,7 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
-    - _BarValue: 1
+    - _BarValue: 0
     m_Colors:
     - _OffColor: {r: 0, g: 1, b: 0.77201605, a: 0}
     - _OnColor: {r: 0.99215686, g: 1, b: 0, a: 0}

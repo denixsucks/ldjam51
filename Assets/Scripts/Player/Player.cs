@@ -8,7 +8,7 @@ public class Player : MonoBehaviour
   public float MovementSpeed = 5f;
   public Rigidbody2D rb;
   private Vector2 Movement;
-  private float activeMoveSpeed;
+  public float activeMoveSpeed;
 
   [Header("Dash")]
   [SerializeField] float startDashTime = 0.2f;
