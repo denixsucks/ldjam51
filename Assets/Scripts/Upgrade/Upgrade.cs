@@ -10,8 +10,6 @@ public class Upgrade : MonoBehaviour
     private int upgradeMilestone;
     private int upgradeLevel;
 
-    [SerializeField] private Material upgradeBar;
-    
     void Awake() {
       if (Instance != null && Instance != this) {
         Destroy(this);
@@ -43,7 +41,6 @@ public class Upgrade : MonoBehaviour
       else if(currentUpgradeOrbCount < 0) {
         previousLevel();
       }
-      updateCanvas();
     }
     void nextLevel()
     {
@@ -58,12 +55,6 @@ public class Upgrade : MonoBehaviour
       upgradeLevel -= 1;
     }
 
-    void updateCanvas()
-    {
-      float value = (float) currentUpgradeOrbCount/upgradeMilestone;
-      upgradeBar.SetFloat("_BarValue", Mathf.Clamp01(value));
-    }
-
     private void Update() 
     {
       if(Input.GetKeyDown(KeyCode.A)) {
@@ -74,9 +65,10 @@ public class Upgrade : MonoBehaviour
         getUpgradeOrb(+1);
       } 
     }
-
     private void OnGUI() {
       GUI.Label(new Rect(5,5,300,600), $"{currentUpgradeOrbCount.ToString()}/{upgradeMilestone.ToString()}");
       GUI.Label(new Rect(5,20,300,600), $"{upgradeLevel.ToString()}");
     }
+
+
 }
