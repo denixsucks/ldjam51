@@ -25,8 +25,10 @@ public class TimeCounter : MonoBehaviour
   }
   void Update()
   { 
-    if (currentTime <= 0 && !isLevelChanging) 
+    if (currentTime <= 0 && !isLevelChanging) {
+      currentTime = 0f;
       StartCoroutine("levelChange");
+    }
     
     if (!isLevelChanging)
       currentTime -= Time.deltaTime;

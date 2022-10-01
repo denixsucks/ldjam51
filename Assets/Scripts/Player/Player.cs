@@ -15,9 +15,11 @@ public class Player : MonoBehaviour
   [SerializeField] float dashSpeed = 16f;
   float currentDashTime;
   bool canDash = true;
+  bool isFlipped = false;
   bool canMove = true;
+  bool frozen = false;
   public AnimationCurve curve;
- 
+  public Animator anim;
   void Start()
   {
     activeMoveSpeed = MovementSpeed;
@@ -26,16 +28,30 @@ public class Player : MonoBehaviour
   void Update()
   {
     var direction = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical"));
-    if(Input.GetKeyDown(KeyCode.LeftShift) && canDash) {
+    if(Input.GetKeyDown(KeyCode.LeftShift) && canDash && !frozen) {
+      anim.SetBool("isDashing", true);
       StartCoroutine(Dash(direction));
     }
+
+    if (direction.x < 0 && !isFlipped && !frozen)
+      flipSprite();
+    else if (direction.x > 0 && isFlipped && !frozen)
+      flipSprite();
+
     direction.Normalize();
-    if(canMove)
+    if(canMove && direction != Vector2.zero){
+      anim.SetBool("isWalking", true);
+    }
+    else
+      anim.SetBool("isWalking", false);
+    
+    if (canMove)
       rb.velocity = direction * activeMoveSpeed;
   }
   
   public void freezePlayer()
   {
+    frozen = true;
     canDash = false;
     canMove = false;
     activeMoveSpeed = 0f;
@@ -43,6 +59,7 @@ public class Player : MonoBehaviour
   }
   public void releasePlayer()
   {
+    frozen = false;
     canDash = true; 
     canMove = true;
     activeMoveSpeed = MovementSpeed;  
@@ -60,8 +77,15 @@ public class Player : MonoBehaviour
       rb.velocity = direction * dashSpeed * x;
       yield return null;
     }
+    anim.SetBool("isDashing", false);
     rb.velocity = new Vector2(0f, 0f); // Stop dashing.
     canDash = true;
+  }
+  void flipSprite()
+  {
+    isFlipped = !isFlipped;
+    transform.Rotate(0, 180, 0);
+
   }
 }
 

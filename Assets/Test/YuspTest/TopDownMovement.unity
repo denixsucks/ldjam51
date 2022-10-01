@@ -498,7 +498,6 @@ GameObject:
   - component: {fileID: 1157873186}
   - component: {fileID: 1157873185}
   - component: {fileID: 1157873187}
-  - component: {fileID: 1157873188}
   m_Layer: 0
   m_Name: SYSTEMS
   m_TagString: Untagged
@@ -513,11 +512,13 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1157873184}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 7115eb8f78c09af4ca2f121fa57d85e7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  player: {fileID: 1865599042}
+  levelChanger: {fileID: 1157873187}
   timerText: {fileID: 510020227}
 --- !u!4 &1157873186
 Transform:
@@ -546,9 +547,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4f4afc26a8f931248a9501f6888e26bb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  levelIndex: 0
-  levelSize: 4
-  otherLevelSize: 4
   levelList:
   - {fileID: 568309177}
   - {fileID: 365699354}
@@ -556,24 +554,6 @@ MonoBehaviour:
   - {fileID: 1885330404}
   - {fileID: 1307203683}
   player: {fileID: 1865599040}
---- !u!114 &1157873188
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1157873184}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7be1235379c533b46aa5caa0a4a0848c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  playerController: {fileID: 1865599042}
-  startingTime: 10
-  levelLoadTime: 4
-  isLevelChanging: 0
-  levelController: {fileID: 1157873187}
-  countDownText: {fileID: 510020227}
 --- !u!1 &1183508318
 GameObject:
   m_ObjectHideFlags: 0
@@ -1123,6 +1103,7 @@ GameObject:
   - component: {fileID: 1865599043}
   - component: {fileID: 1865599042}
   - component: {fileID: 1865599041}
+  - component: {fileID: 1865599045}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -1163,11 +1144,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d7330e392c0b4e84082981dbca585bb3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  MovementSpeed: 5
+  MovementSpeed: 15
   rb: {fileID: 1865599041}
   activeMoveSpeed: 0
-  startDashTime: 0.175
-  dashSpeed: 17
+  startDashTime: 0.3
+  dashSpeed: 25
   curve:
     serializedVersion: 2
     m_Curve:
@@ -1201,6 +1182,7 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+  anim: {fileID: 1865599045}
 --- !u!212 &1865599043
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -1242,7 +1224,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 7482667652216324306, guid: 311925a002f4447b3a28927169b83ea6, type: 3}
+  m_Sprite: {fileID: -1610933627, guid: 1bbbc3ef34b87fd4d82df89f7a00cb93, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -1268,6 +1250,26 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!95 &1865599045
+Animator:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1865599040}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 461b8fa8197887849b31ef26f60b1070, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &1885330404
 GameObject:
   m_ObjectHideFlags: 0
