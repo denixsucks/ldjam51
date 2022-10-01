@@ -15,6 +15,7 @@ public class Player : MonoBehaviour
   [SerializeField] float dashSpeed = 16f;
   float currentDashTime;
   bool canDash = true;
+  bool canMove = true;
   public AnimationCurve curve;
  
   void Start()
@@ -29,9 +30,23 @@ public class Player : MonoBehaviour
       StartCoroutine(Dash(direction));
     }
     direction.Normalize();
-    rb.velocity = direction * activeMoveSpeed;
+    if(canMove)
+      rb.velocity = direction * activeMoveSpeed;
   }
-
+  
+  public void freezePlayer()
+  {
+    canDash = false;
+    canMove = false;
+    activeMoveSpeed = 0f;
+    rb.velocity = Vector2.zero;
+  }
+  public void releasePlayer()
+  {
+    canDash = true; 
+    canMove = true;
+    activeMoveSpeed = MovementSpeed;  
+  }
   IEnumerator Dash(Vector2 direction)
   {
     float curveValue = 0f;

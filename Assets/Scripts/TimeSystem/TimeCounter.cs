@@ -5,8 +5,12 @@ using UnityEngine.UI;
 public class TimeCounter : MonoBehaviour
 {
   public static TimeCounter Instance {get; private set;}
-  const float timer = 10f;
+  const float startTime = 10f;
+  const float levelLoadTime = 4f;
   private float currentTime;
+  private bool isLevelChanging = false;
+  public Player player;
+  public Levels levelChanger;
   public Text timerText;
   
   void Awake()
@@ -21,9 +25,26 @@ public class TimeCounter : MonoBehaviour
   }
   void Update()
   { 
-    if (currentTime <= 0) resetTimer();
-    currentTime -= Time.deltaTime;
+    if (currentTime <= 0 && !isLevelChanging) 
+      StartCoroutine("levelChange");
+    
+    if (!isLevelChanging)
+      currentTime -= Time.deltaTime;
+
     timerText.text = currentTime.ToString("0.00");
   }
-  void resetTimer() => currentTime = timer;
+  IEnumerator levelChange()
+  {
+    isLevelChanging = true;
+    player.freezePlayer();
+    yield return new WaitForSeconds(levelLoadTime - levelLoadTime/2f);
+    levelChanger.teleportPlayerToArea();
+    resetTimer();
+    yield return new WaitForSeconds(levelLoadTime - levelLoadTime/2f);
+    player.releasePlayer();
+    isLevelChanging = false;
+    yield break;
+  }
+
+  void resetTimer() => currentTime = startTime;
 }
