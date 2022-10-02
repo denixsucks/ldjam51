@@ -14,6 +14,7 @@ public class PlayerAttack : MonoBehaviour
   float timer;
 
   [Header("Misc")]
+  public PlayerMovement move;
   public Animator anim;
   public Camera cam;
 
@@ -23,12 +24,17 @@ public class PlayerAttack : MonoBehaviour
   }
   void Update()
   {
-    if (Input.GetMouseButtonDown(0) && canAttack)
+    if (!canAttack && attackIndex != 2)
+    {
+      anim.SetBool("isWalking", false);
+      move.activeMoveSpeed = 3f;
+    }
+    if (Input.GetMouseButtonDown(0) && canAttack && !move.frozen)
     {
       StartCoroutine(Attack());
       timerIsOn = true;
     }
-
+    
     if (timerIsOn)
     {
       timer -= Time.deltaTime;
@@ -47,12 +53,15 @@ public class PlayerAttack : MonoBehaviour
       canAttack = false;
       anim.SetInteger("comboCount", 0);
       anim.SetBool("isAttacking", true);
-      moveForward();
+      moveForward(1.5f);
+      move.canFlip = false;
       giveDamage();
       yield return new WaitForSeconds(0.2f);
       anim.SetBool("isAttacking", false);
       canAttack = true;
       attackIndex = 1;
+      move.canFlip = true;
+      move.activeMoveSpeed = move.MovementSpeed;
       yield return null;
     }
 
@@ -61,12 +70,15 @@ public class PlayerAttack : MonoBehaviour
       canAttack = false;
       anim.SetInteger("comboCount", 1);
       anim.SetBool("isAttacking", true);
-      moveForward();
+      moveForward(1.5f);
+      move.canFlip = false;
       giveDamage();
       yield return new WaitForSeconds(0.3f);
       anim.SetBool("isAttacking", false);
       canAttack = true;
       attackIndex = 2;
+      move.canFlip = true;
+      move.activeMoveSpeed = move.MovementSpeed;
       yield return null;
     }
 
@@ -75,21 +87,33 @@ public class PlayerAttack : MonoBehaviour
       canAttack = false;
       anim.SetInteger("comboCount", 2);
       anim.SetBool("isAttacking", true);
-      moveForward();
+      move.activeMoveSpeed = 2f;
+      moveForward(2f);
       giveDamage();
-      yield return new WaitForSeconds(0.5f);
-      anim.SetBool("isAttacking", false);
-      yield return new WaitForSeconds(1f);
+      move.canFlip = false;
+      yield return new WaitForSeconds(0.4f);
       canAttack = true;
+      anim.SetBool("isAttacking", false);
+      move.activeMoveSpeed = move.MovementSpeed;
+      move.canFlip = true;
+      yield return new WaitForSeconds(1f);
       resetTimer();
       yield return null;
     }
     yield return null;
   }
 
-  void moveForward()
+  void moveForward(float dist)
   {
-    transform.position = Vector2.MoveTowards(transform.position, cam.ScreenToWorldPoint(Input.mousePosition), 1.5f);
+    transform.position = Vector2.MoveTowards(transform.position, cam.ScreenToWorldPoint(Input.mousePosition), dist);
+    flipFromMouse();
+  }
+  void flipFromMouse()
+  {
+    if (cam.ScreenToWorldPoint(Input.mousePosition).x < 0f && move.isFlipped == false)
+       move.flipSprite();
+    else if (cam.ScreenToWorldPoint(Input.mousePosition).x > 0f && move.isFlipped == true)
+      move.flipSprite();
   }
   void resetTimer()
   {

@@ -5,10 +5,11 @@ using UnityEngine;
 public class PlayerMovement : MonoBehaviour
 {
   private Vector2 Movement;
-  bool isFlipped = false;
+  public bool isFlipped = false;
+  public bool canFlip = true;
   bool canMove = true;
   bool canDash = true;
-  bool frozen = false;
+  public bool frozen = false;
   float currentDashTime;
 
 
@@ -26,6 +27,7 @@ public class PlayerMovement : MonoBehaviour
   [Header("Misc")]
   public Animator anim;
   public PlayerAttack playerAttack;
+  public PlayerThrow playerThrow;
 
   void Start()
   {
@@ -40,9 +42,9 @@ public class PlayerMovement : MonoBehaviour
       StartCoroutine(Dash(direction));
     }
 
-    if (direction.x < 0 && !isFlipped && !frozen)
+    if (direction.x < 0 && !isFlipped && !frozen && canFlip)
       flipSprite();
-    else if (direction.x > 0 && isFlipped && !frozen)
+    else if (direction.x > 0 && isFlipped && !frozen && canFlip)
       flipSprite();
 
     direction.Normalize();
@@ -65,6 +67,8 @@ public class PlayerMovement : MonoBehaviour
     canMove = false;
     activeMoveSpeed = 0f;
     rb.velocity = Vector2.zero;
+    playerThrow.isClicked = true;
+    playerThrow.canCallBack = false;
   }
   public void releasePlayer()
   {
@@ -73,6 +77,8 @@ public class PlayerMovement : MonoBehaviour
     canDash = true; 
     canMove = true;
     activeMoveSpeed = MovementSpeed;  
+    playerThrow.isClicked = false;
+    playerThrow.canCallBack = true;
   }
   IEnumerator Dash(Vector2 direction)
   {
@@ -91,7 +97,7 @@ public class PlayerMovement : MonoBehaviour
     rb.velocity = new Vector2(0f, 0f); // Stop dashing.
     canDash = true;
   }
-  void flipSprite()
+  public void flipSprite()
   {
     isFlipped = !isFlipped;
     transform.Rotate(0, 180, 0);

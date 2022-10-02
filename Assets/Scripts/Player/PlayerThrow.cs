@@ -22,23 +22,25 @@ public class PlayerThrow : MonoBehaviour
   public float maxThrowing = 5f;
   public Camera gameCam;
 
-
+  bool holding = true;
+  public PlayerMovement move;
 
   private void Update()
   {
     SelfRotation();
 
-    if (Input.GetMouseButtonDown(1) && isClicked == false)
+    if (Input.GetMouseButtonDown(1) && !isClicked)
     {
       isClicked = true;
       targetPos = new Vector3(gameCam.ScreenToWorldPoint(Input.mousePosition).x, gameCam.ScreenToWorldPoint(Input.mousePosition).y, 0);
       targetPos = new Vector3(Mathf.Clamp(targetPos.x, playerPos.position.x - maxThrowing, playerPos.position.x + maxThrowing), Mathf.Clamp(targetPos.y, playerPos.position.y - maxThrowing, playerPos.position.y + maxThrowing), 0);
-
+      holding = false;
     }
 
     if (Input.GetMouseButtonDown(1) && canCallBack)
     {
       returnWeapon = true;
+      holding = false;
     }
 
     if (returnWeapon)
@@ -47,39 +49,40 @@ public class PlayerThrow : MonoBehaviour
       isRotating = false;
     }
 
-    if (isClicked)
+    if (isClicked && !move.frozen)
     {
       ThrowWeapon();
     }
 
-    if (Vector2.Distance(weapon.transform.position, targetPos) <= 0.01f)
+    if (Vector2.Distance(weapon.transform.position, targetPos) <= 0.1f)
     {
       canCallBack = true;
-
       isRotating = false;
     }
 
-
-    //burasi bi tik kotu oldu galiba 
-
-    if (Vector2.Distance(weapon.transform.position, playerPos.position) <= 0.1f)
+    if (holding) {
+      weapon.transform.position = playerPos.position;
+    }
+    checkIfPlayerNear(0.01f);
+  }
+  void checkIfPlayerNear(float dist) 
+  {
+    if (Vector2.Distance(weapon.transform.position, playerPos.position) < dist)
     {
       isRotating = false;
       canCallBack = false;
       returnWeapon = false;
-      isClicked = false;
-
+      isClicked = false;     
       weapon.rotation = new Quaternion(0, 0, 0, 0);
+      holding = true;
     }
-
   }
-
   private void CallBack()
   {
     var PlayerPos = new Vector2(playerPos.position.x + Mathf.Abs(Mathf.Sin(Time.time) * 3f), playerPos.position.y);
     isRotating = true;
     weapon.position = Vector2.MoveTowards(weapon.position, playerPos.position, throwSpeed * 3 * Time.deltaTime);
-    Debug.Log("Bizim Pos: " + PlayerPos + "   org pos " + playerPos.position);
+    checkIfPlayerNear(0.5f);
   }
 
   private void ThrowWeapon()
