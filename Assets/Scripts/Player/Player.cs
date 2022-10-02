@@ -4,22 +4,38 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
+  private Vector2 Movement;
+  bool isFlipped = false;
+  bool canMove = true;
+  bool canDash = true;
+  bool frozen = false;
+  float currentDashTime;
+
+
+
   [Header("Movement")]
   public float MovementSpeed = 5f;
   public Rigidbody2D rb;
-  private Vector2 Movement;
   public float activeMoveSpeed;
 
   [Header("Dash")]
   [SerializeField] float startDashTime = 0.2f;
   [SerializeField] float dashSpeed = 16f;
-  float currentDashTime;
-  bool canDash = true;
-  bool isFlipped = false;
-  bool canMove = true;
-  bool frozen = false;
   public AnimationCurve curve;
+
+
+  [Header("Attack")]
+  public float waitTimeForCombo = 0.5f;
+  int attackIndex;
+  bool canAttack = true;
+  
+
+  [Header("Misc")]
   public Animator anim;
+
+
+
+
   void Start()
   {
     activeMoveSpeed = MovementSpeed;
@@ -45,6 +61,12 @@ public class Player : MonoBehaviour
     else
       anim.SetBool("isWalking", false);
     
+    if (Input.GetMouseButtonDown(0) && canAttack && !frozen)
+    {
+      Attack();
+    }
+
+
     if (canMove)
       rb.velocity = direction * activeMoveSpeed;
   }
@@ -85,6 +107,26 @@ public class Player : MonoBehaviour
   {
     isFlipped = !isFlipped;
     transform.Rotate(0, 180, 0);
+
+  }
+  
+  void Attack()
+  {
+
+  }
+
+  // IEnumerator checkForCombo()
+  // {
+
+  // }
+
+  void playNextCombo()
+  {
+
+  }
+
+  void resetCombo()
+  {
 
   }
 }
