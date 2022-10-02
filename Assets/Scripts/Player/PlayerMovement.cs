@@ -23,18 +23,9 @@ public class PlayerMovement : MonoBehaviour
   [SerializeField] float dashSpeed = 16f;
   public AnimationCurve curve;
 
-
-  [Header("Attack")]
-  public float waitTimeForCombo = 0.5f;
-  int attackIndex;
-  bool canAttack = true;
-  
-
   [Header("Misc")]
   public Animator anim;
-
-
-
+  public PlayerAttack playerAttack;
 
   void Start()
   {
@@ -61,12 +52,7 @@ public class PlayerMovement : MonoBehaviour
     else
       anim.SetBool("isWalking", false);
     
-    if (Input.GetMouseButtonDown(0) && canAttack && !frozen)
-    {
-      Attack();
-    }
-
-
+  
     if (canMove)
       rb.velocity = direction * activeMoveSpeed;
   }
@@ -75,12 +61,14 @@ public class PlayerMovement : MonoBehaviour
   {
     frozen = true;
     canDash = false;
+    playerAttack.canAttack = false;
     canMove = false;
     activeMoveSpeed = 0f;
     rb.velocity = Vector2.zero;
   }
   public void releasePlayer()
   {
+    playerAttack.canAttack = true;
     frozen = false;
     canDash = true; 
     canMove = true;
@@ -107,26 +95,6 @@ public class PlayerMovement : MonoBehaviour
   {
     isFlipped = !isFlipped;
     transform.Rotate(0, 180, 0);
-
-  }
-  
-  void Attack()
-  {
-
-  }
-
-  // IEnumerator checkForCombo()
-  // {
-
-  // }
-
-  void playNextCombo()
-  {
-
-  }
-
-  void resetCombo()
-  {
 
   }
 }

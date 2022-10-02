@@ -12,7 +12,9 @@ public class TimeCounter : MonoBehaviour
   public PlayerMovement player;
   public Levels levelChanger;
   public Text timerText;
-  
+  public Animator anim;
+  public Material mat;
+
   void Awake()
   {
     if(Instance != null && Instance != this) {
@@ -39,10 +41,23 @@ public class TimeCounter : MonoBehaviour
   {
     isLevelChanging = true;
     player.freezePlayer();
+    anim.SetBool("isPortal", true);
+    yield return new WaitForSeconds(levelLoadTime - levelLoadTime/2f);
+    float x = 0;
+    while(x >= 25)
+      x += Time.deltaTime;
+      mat.SetFloat("_Float", x);
     yield return new WaitForSeconds(levelLoadTime - levelLoadTime/2f);
     levelChanger.teleportPlayerToArea();
+    anim.SetBool("isPortal", false);
+    while(x <= 0)
+      x -= Time.deltaTime;
+      mat.SetFloat("_Float", x);
+    yield return new WaitForSeconds(levelLoadTime - levelLoadTime/2f);
+    anim.SetBool("isPortal2", true);
     resetTimer();
     yield return new WaitForSeconds(levelLoadTime - levelLoadTime/2f);
+    anim.SetBool("isPortal2", false);
     player.releasePlayer();
     isLevelChanging = false;
     yield break;

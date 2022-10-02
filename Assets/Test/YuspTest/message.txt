@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 
-public class Stick : MonoBehaviour
+public class comeHere : MonoBehaviour
 {
     [Header("Rotation")]
     public float rotateSpeed;
@@ -22,21 +22,20 @@ public class Stick : MonoBehaviour
     
 
     public float maxThrowing = 5f;
-    public Camera gameCam;
 
     private void Update()
     {
         SelfRotation();
 
-        if (Input.GetMouseButtonDown(1) &&isClicked == false)
+        if (Input.GetMouseButtonDown(0) &&isClicked == false)
         {
             isClicked = true;
-            targetPos = new Vector3(gameCam.ScreenToWorldPoint(Input.mousePosition).x, gameCam.ScreenToWorldPoint(Input.mousePosition).y, 0);
+            targetPos = new Vector3(Camera.main.ScreenToWorldPoint(Input.mousePosition).x, Camera.main.ScreenToWorldPoint(Input.mousePosition).y, 0);
             targetPos = new Vector3(Mathf.Clamp(targetPos.x, playerPos.position.x - maxThrowing, playerPos.position.x + maxThrowing), Mathf.Clamp(targetPos.y, playerPos.position.y - maxThrowing, playerPos.position.y + maxThrowing), 0);
             
         }
 
-        if (Input.GetMouseButton(1) && canCallBack)
+        if (Input.GetMouseButton(0) && canCallBack)
         {
             returnWeapon = true;
         }
@@ -78,7 +77,7 @@ public class Stick : MonoBehaviour
     {
         var PlayerPos = new Vector2(playerPos.position.x + Mathf.Abs(Mathf.Sin(Time.time) * 3f), playerPos.position.y);
         isRotating = true;
-        transform.position = Vector2.MoveTowards(transform.position, playerPos.position, throwSpeed * 3 * Time.deltaTime);
+        transform.position = Vector2.MoveTowards(transform.position, PlayerPos, throwSpeed * 3 * Time.deltaTime);
         Debug.Log("Bizim Pos: " + PlayerPos + "   org pos "+playerPos.position);
     }
 

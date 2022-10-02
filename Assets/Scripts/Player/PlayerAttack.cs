@@ -5,138 +5,101 @@ using UnityEngine;
 public class PlayerAttack : MonoBehaviour
 {
 
-  [Header("Melee")]
-  public float attackDamage;
-  bool canAttack;
-
-  [Header("Throwable")]
-  public GameObject weapon;
-  public float mouseLocationTiling = 4.5f;
-  public float throwDistance;
-  public float throwSpeed;
-  bool holding;
-  bool inAir;
-  Vector3 targetPosition;
-
-
-  [Header("Rotation")]
-  public float rotateSpeed;
-  public bool isRotating;
-
-
-  [Header("Throw")]
-  public bool isClicked;
-  private Vector3 targetPos;
-  public Camera gameCam;
-
-  [Header("CallBack")]
-  public bool canCallBack;
-  public bool returnWeapon;
+  [Header("Attack")]
+  public float waitTimeForCombo = 0.5f;
+  public float attackDamage = 1f;
+  int attackIndex = 0;
+  public bool canAttack = true;
+  bool timerIsOn = false;
+  float timer;
 
   [Header("Misc")]
-  [SerializeField] private Transform playerPos;
-  // Update is called once per frame
+  public Animator anim;
+  public Camera cam;
+
+  private void Start()
+  {
+    timer = waitTimeForCombo;
+  }
   void Update()
   {
-    SelfRotation();
-
-    if (Input.GetMouseButtonDown(1) && isClicked == false)
+    if (Input.GetMouseButtonDown(0) && canAttack)
     {
-      isClicked = true;
-      targetPos = new Vector3(gameCam.ScreenToWorldPoint(Input.mousePosition).x, gameCam.ScreenToWorldPoint(Input.mousePosition).y + mouseLocationTiling, 0);
-      holding = false;
+      StartCoroutine(Attack());
+      timerIsOn = true;
     }
 
-    if (Input.GetMouseButton(1) && canCallBack)
+    if (timerIsOn)
     {
-      holding = false;
-      returnWeapon = true;
+      timer -= Time.deltaTime;
     }
 
-    if (returnWeapon)
+    if (timer <= 0f)
     {
-      holding = false;
-      CallBack();
-      isRotating = false;
-    }
-
-    if (isClicked)
-    {
-      holding = false;
-      ThrowWeapon();
-    }
-
-    if (checkDestination(weapon.transform.position, new Vector2(0f,0f), true))
-    {
-      inAir = false;
-      canCallBack = true;
-      isRotating = false;
-      isClicked = false;
-    }
-
-    if (holding) 
-    {
-      weapon.transform.position = playerPos.position;
-    }
-
-    //burasi bi tik kotu oldu galiba 
-
-    if (checkDestination(weapon.transform.position, playerPos.position, false) && !inAir)
-    {
-      isRotating = false;
-      holding = true;
-      canCallBack = false;
-      returnWeapon = false;
-      isClicked = false;
-      weapon.transform.rotation = new Quaternion(0, 0, 0, 0);
+      resetTimer();
     }
 
   }
-  Vector2 calculateDestination()
+  IEnumerator Attack()
   {
-    float x,y;
-    if (targetPos.x < 0)
-      x = -throwDistance;
-    else 
-      x = throwDistance;
-
-    if (targetPos.y < 0)
-      y = -throwDistance;
-    else
-      y = throwDistance;
-    
-    return new Vector2(playerPos.position.x + x, playerPos.position.y + y);
-  }
-  bool checkDestination(Vector2 startPos, Vector2 endPos, bool calculate)
-  {
-    if (calculate)
-      endPos = calculateDestination();
-    float dif = Vector2.Distance(startPos, endPos);
-    return dif <= 0.1f;
-  }
-  private void CallBack()
-  {
-    isRotating = true;
-    inAir = true;
-    weapon.transform.position = Vector2.MoveTowards(weapon.transform.position, playerPos.position, throwSpeed * 3 * Time.deltaTime);
-  }
-
-  private void ThrowWeapon()
-  {
-    isRotating = true;
-    inAir = true;
-    weapon.transform.position = Vector2.MoveTowards(weapon.transform.position, calculateDestination(), Time.deltaTime * throwSpeed);  
-  }
-  private void SelfRotation()
-  {
-    if (isRotating)
+    if (attackIndex == 0)
     {
-      weapon.transform.Rotate(0, 0, rotateSpeed * Time.deltaTime);
+      canAttack = false;
+      anim.SetInteger("comboCount", 0);
+      anim.SetBool("isAttacking", true);
+      moveForward();
+      giveDamage();
+      yield return new WaitForSeconds(0.2f);
+      anim.SetBool("isAttacking", false);
+      canAttack = true;
+      attackIndex = 1;
+      yield return null;
     }
-    else
+
+    else if (attackIndex == 1)
     {
-      weapon.transform.Rotate(0, 0, 0);
+      canAttack = false;
+      anim.SetInteger("comboCount", 1);
+      anim.SetBool("isAttacking", true);
+      moveForward();
+      giveDamage();
+      yield return new WaitForSeconds(0.3f);
+      anim.SetBool("isAttacking", false);
+      canAttack = true;
+      attackIndex = 2;
+      yield return null;
     }
+
+    else if (attackIndex == 2)
+    {
+      canAttack = false;
+      anim.SetInteger("comboCount", 2);
+      anim.SetBool("isAttacking", true);
+      moveForward();
+      giveDamage();
+      yield return new WaitForSeconds(0.5f);
+      anim.SetBool("isAttacking", false);
+      yield return new WaitForSeconds(1f);
+      canAttack = true;
+      resetTimer();
+      yield return null;
+    }
+    yield return null;
   }
 
+  void moveForward()
+  {
+    transform.position = Vector2.MoveTowards(transform.position, cam.ScreenToWorldPoint(Input.mousePosition), 1.5f);
+  }
+  void resetTimer()
+  {
+    timerIsOn = false;
+    timer = waitTimeForCombo;
+    attackIndex = 0;
+  }
+
+  void giveDamage()
+  {
+
+  }
 }
