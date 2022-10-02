@@ -15,6 +15,8 @@ public class PlayerAttack : MonoBehaviour
 
   [Header("Misc")]
   public PlayerMovement move;
+  public PlayerThrow playerThrow;
+  public GameObject stick;
   public Animator anim;
   public Camera cam;
 
@@ -46,10 +48,18 @@ public class PlayerAttack : MonoBehaviour
     }
 
   }
+  void hideStickForAttack()
+  {
+    if(!playerThrow.canCallBack)
+    {
+      stick.SetActive(false);
+    }
+  }
   IEnumerator Attack()
   {
     if (attackIndex == 0)
     {
+      hideStickForAttack();
       canAttack = false;
       anim.SetInteger("comboCount", 0);
       anim.SetBool("isAttacking", true);
@@ -62,11 +72,13 @@ public class PlayerAttack : MonoBehaviour
       attackIndex = 1;
       move.canFlip = true;
       move.activeMoveSpeed = move.MovementSpeed;
+      stick.SetActive(true);
       yield return null;
     }
 
     else if (attackIndex == 1)
     {
+      hideStickForAttack();
       canAttack = false;
       anim.SetInteger("comboCount", 1);
       anim.SetBool("isAttacking", true);
@@ -79,12 +91,14 @@ public class PlayerAttack : MonoBehaviour
       attackIndex = 2;
       move.canFlip = true;
       move.activeMoveSpeed = move.MovementSpeed;
+      stick.SetActive(true);
       yield return null;
     }
 
     else if (attackIndex == 2)
     {
       canAttack = false;
+      hideStickForAttack();
       anim.SetInteger("comboCount", 2);
       anim.SetBool("isAttacking", true);
       move.activeMoveSpeed = 2f;
@@ -96,6 +110,7 @@ public class PlayerAttack : MonoBehaviour
       anim.SetBool("isAttacking", false);
       move.activeMoveSpeed = move.MovementSpeed;
       move.canFlip = true;
+      stick.SetActive(true);
       yield return new WaitForSeconds(1f);
       resetTimer();
       yield return null;

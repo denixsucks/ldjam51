@@ -9,7 +9,8 @@ public class Upgrade : MonoBehaviour
     private int currentUpgradeOrbCount;
     private int upgradeMilestone;
     private int upgradeLevel;
-
+    bool barMoving = false;
+    bool gotInfo = false;
     [SerializeField] private Material upgradeBar;
     
     void Awake() {
@@ -32,9 +33,21 @@ public class Upgrade : MonoBehaviour
     public void getUpgradeOrb(int getSize) 
     {
       currentUpgradeOrbCount += getSize;
-      checkUpdate();
+      // checkUpdate();
+      barMoving = true;
+
+      float value = (float) currentUpgradeOrbCount/upgradeMilestone;
+      float current = (float) currentUpgradeOrbCount;
+      float dest = current + getSize;
     }
 
+    void matAnimationInformation(float val, float current, float dest, out float val_out, out float current_out, out float dest_out)
+    {
+      val_out = val;
+      current_out = current;
+      dest_out = dest;
+      gotInfo = true;
+    }
     private void checkUpdate() 
     {
       if(currentUpgradeOrbCount == upgradeMilestone) {
@@ -72,6 +85,12 @@ public class Upgrade : MonoBehaviour
 
       if(Input.GetKeyDown(KeyCode.D)) {
         getUpgradeOrb(+1);
+      }
+      if(barMoving) {
+        if(gotInfo)
+        {
+          
+        }
       } 
     }
 

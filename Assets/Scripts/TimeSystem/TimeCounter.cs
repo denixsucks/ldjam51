@@ -14,6 +14,7 @@ public class TimeCounter : MonoBehaviour
   public Text timerText;
   public Animator anim;
   public Animator animShader;
+  public GameObject stick;
 
   void Awake()
   {
@@ -44,6 +45,7 @@ public class TimeCounter : MonoBehaviour
   {
     isLevelChanging = true;
     player.freezePlayer();
+    stick.SetActive(false);
     anim.SetBool("isPortal", true);
     animShader.SetBool("isLevelLoading", true);
     yield return new WaitForSeconds(levelLoadTime - levelLoadTime / 2f);
@@ -58,6 +60,7 @@ public class TimeCounter : MonoBehaviour
     resetTimer();
     yield return new WaitForSeconds(levelLoadTime - levelLoadTime / 2f);
     anim.SetBool("isPortal2", false);
+    stick.SetActive(true);
     player.releasePlayer();
     isLevelChanging = false;
     yield break;

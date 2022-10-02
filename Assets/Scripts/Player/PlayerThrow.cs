@@ -21,17 +21,21 @@ public class PlayerThrow : MonoBehaviour
   public bool returnWeapon;
   public float maxThrowing = 5f;
   public Camera gameCam;
-
+  public bool canThrow = true;
   bool holding = true;
   public PlayerMovement move;
-
+  public PlayerAttack attack;
+  public bool weaponFlipped = false;
+  bool weaponCanFlip = true;
   private void Update()
   {
     SelfRotation();
 
-    if (Input.GetMouseButtonDown(1) && !isClicked)
+    if (Input.GetMouseButtonDown(1) && !isClicked && canThrow)
     {
+      canThrow = false;
       isClicked = true;
+      attack.canAttack = false;      
       targetPos = new Vector3(gameCam.ScreenToWorldPoint(Input.mousePosition).x, gameCam.ScreenToWorldPoint(Input.mousePosition).y, 0);
       targetPos = new Vector3(Mathf.Clamp(targetPos.x, playerPos.position.x - maxThrowing, playerPos.position.x + maxThrowing), Mathf.Clamp(targetPos.y, playerPos.position.y - maxThrowing, playerPos.position.y + maxThrowing), 0);
       holding = false;
@@ -58,10 +62,12 @@ public class PlayerThrow : MonoBehaviour
     {
       canCallBack = true;
       isRotating = false;
+      weaponCanFlip = false;
     }
 
-    if (holding) {
+    if (holding && !move.frozen) {
       weapon.transform.position = playerPos.position;
+      attack.canAttack = true;
     }
     checkIfPlayerNear(0.01f);
   }
@@ -70,11 +76,12 @@ public class PlayerThrow : MonoBehaviour
     if (Vector2.Distance(weapon.transform.position, playerPos.position) < dist)
     {
       isRotating = false;
+      canThrow = true;
       canCallBack = false;
       returnWeapon = false;
       isClicked = false;     
-      weapon.rotation = new Quaternion(0, 0, 0, 0);
       holding = true;
+      weaponCanFlip = true;
     }
   }
   private void CallBack()
@@ -83,6 +90,7 @@ public class PlayerThrow : MonoBehaviour
     isRotating = true;
     weapon.position = Vector2.MoveTowards(weapon.position, playerPos.position, throwSpeed * 3 * Time.deltaTime);
     checkIfPlayerNear(0.5f);
+    weapon.rotation = new Quaternion(0, 0, 0, 0);
   }
 
   private void ThrowWeapon()
@@ -99,8 +107,13 @@ public class PlayerThrow : MonoBehaviour
     }
     else
     {
-      weapon.transform.Rotate(0, 0, 0);
+      
     }
+  }
+  public void flipWeapon()
+  {
+    if (weaponCanFlip)
+      weapon.transform.Rotate(0, 180, 0);
   }
 
 

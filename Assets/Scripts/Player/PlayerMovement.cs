@@ -28,6 +28,7 @@ public class PlayerMovement : MonoBehaviour
   public Animator anim;
   public PlayerAttack playerAttack;
   public PlayerThrow playerThrow;
+  public GameObject stick;
 
   void Start()
   {
@@ -51,9 +52,9 @@ public class PlayerMovement : MonoBehaviour
     if(canMove && direction != Vector2.zero){
       anim.SetBool("isWalking", true);
     }
-    else
+    else {
       anim.SetBool("isWalking", false);
-    
+    }
   
     if (canMove)
       rb.velocity = direction * activeMoveSpeed;
@@ -82,6 +83,9 @@ public class PlayerMovement : MonoBehaviour
   }
   IEnumerator Dash(Vector2 direction)
   {
+    if(!playerThrow.canCallBack)
+      stick.SetActive(false);
+    playerThrow.canThrow = false;
     float curveValue = 0f;
     canDash = false;
     currentDashTime = startDashTime;
@@ -96,10 +100,14 @@ public class PlayerMovement : MonoBehaviour
     anim.SetBool("isDashing", false);
     rb.velocity = new Vector2(0f, 0f); // Stop dashing.
     canDash = true;
+    if(!playerThrow.canCallBack)
+      playerThrow.canThrow = false;
+    stick.SetActive(true);
   }
   public void flipSprite()
   {
     isFlipped = !isFlipped;
+    playerThrow.flipWeapon(); 
     transform.Rotate(0, 180, 0);
 
   }
