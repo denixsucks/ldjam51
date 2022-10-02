@@ -20,6 +20,22 @@ Material:
   m_SavedProperties:
     serializedVersion: 3
     m_TexEnvs:
+    - Layer_80067CD2:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - Layer_8B3C5C63:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _MainTex:
+        m_Texture: {fileID: 8400000, guid: 3c3f316c12bf7f94e800a33d9340d0c9, type: 2}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _RenderTex:
+        m_Texture: {fileID: 8400000, guid: 3c3f316c12bf7f94e800a33d9340d0c9, type: 2}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
     - _Texture2DAsset_a6f998b836a84a9cacd49727e6d9b06e_Out_0:
         m_Texture: {fileID: 2800000, guid: 7d28f9a5638261646a5bc5790e4bec47, type: 3}
         m_Scale: {x: 1, y: 1}
