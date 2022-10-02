@@ -59,7 +59,7 @@ public class Stick : MonoBehaviour
 
         //burasi bi tik kotu oldu galiba 
 
-        if (Vector2.Distance(transform.position, playerPos.position) <= 0.1f)
+        if (Vector2.Distance(transform.position, playerPos.position) <= 1f)
         {
             isRotating = false;
             canCallBack = false;

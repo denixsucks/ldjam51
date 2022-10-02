@@ -9,7 +9,7 @@ public class TimeCounter : MonoBehaviour
   const float levelLoadTime = 4f;
   private float currentTime;
   private bool isLevelChanging = false;
-  public Player player;
+  public PlayerMovement player;
   public Levels levelChanger;
   public Text timerText;
   
