@@ -13,8 +13,9 @@ public class TimeCounter : MonoBehaviour
   public Levels levelChanger;
   public Text timerText;
   public Animator anim;
-  public Material mat;
-
+  public Animator animShader;
+  //public Material mat;
+  
   void Awake()
   {
     if(Instance != null && Instance != this) {
@@ -42,19 +43,23 @@ public class TimeCounter : MonoBehaviour
     isLevelChanging = true;
     player.freezePlayer();
     anim.SetBool("isPortal", true);
-    yield return new WaitForSeconds(levelLoadTime - levelLoadTime/2f);
-    float x = 0;
-    while(x >= 25)
-      x += Time.deltaTime;
-      mat.SetFloat("_Float", x);
+    animShader.SetBool("isLevelLoading", true);
+        yield return new WaitForSeconds(levelLoadTime - levelLoadTime/2f);
+        //float x = 0;
+        //while(x >= 25)
+        //x += Time.deltaTime;
+        //mat.SetFloat("_Float", x);
     yield return new WaitForSeconds(levelLoadTime - levelLoadTime/2f);
     levelChanger.teleportPlayerToArea();
+        animShader.SetBool("isLevelLoading", false);
+        animShader.SetBool("isLevelStarted", true);
     anim.SetBool("isPortal", false);
-    while(x <= 0)
-      x -= Time.deltaTime;
-      mat.SetFloat("_Float", x);
+      //while(x <= 0)
+      //x -= Time.deltaTime;
+      //mat.SetFloat("_Float", x);
     yield return new WaitForSeconds(levelLoadTime - levelLoadTime/2f);
-    anim.SetBool("isPortal2", true);
+        animShader.SetBool("isLevelStarted", false);
+        anim.SetBool("isPortal2", true);
     resetTimer();
     yield return new WaitForSeconds(levelLoadTime - levelLoadTime/2f);
     anim.SetBool("isPortal2", false);

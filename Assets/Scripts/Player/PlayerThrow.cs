@@ -36,7 +36,7 @@ public class PlayerThrow : MonoBehaviour
 
     }
 
-    if (Input.GetMouseButton(1) && canCallBack)
+    if (Input.GetMouseButtonDown(1) && canCallBack)
     {
       returnWeapon = true;
     }
@@ -52,7 +52,7 @@ public class PlayerThrow : MonoBehaviour
       ThrowWeapon();
     }
 
-    if (Vector2.Distance(transform.position, targetPos) <= 0.01f)
+    if (Vector2.Distance(weapon.transform.position, targetPos) <= 0.01f)
     {
       canCallBack = true;
 
@@ -62,7 +62,7 @@ public class PlayerThrow : MonoBehaviour
 
     //burasi bi tik kotu oldu galiba 
 
-    if (Vector2.Distance(transform.position, playerPos.position) <= 0.1f)
+    if (Vector2.Distance(weapon.transform.position, playerPos.position) <= 0.1f)
     {
       isRotating = false;
       canCallBack = false;
@@ -78,7 +78,7 @@ public class PlayerThrow : MonoBehaviour
   {
     var PlayerPos = new Vector2(playerPos.position.x + Mathf.Abs(Mathf.Sin(Time.time) * 3f), playerPos.position.y);
     isRotating = true;
-    transform.position = Vector2.MoveTowards(weapon.position, PlayerPos, throwSpeed * 3 * Time.deltaTime);
+    weapon.position = Vector2.MoveTowards(weapon.position, playerPos.position, throwSpeed * 3 * Time.deltaTime);
     Debug.Log("Bizim Pos: " + PlayerPos + "   org pos " + playerPos.position);
   }
 
@@ -92,11 +92,11 @@ public class PlayerThrow : MonoBehaviour
   {
     if (isRotating)
     {
-      transform.Rotate(0, 0, rotateSpeed * Time.deltaTime);
+      weapon.transform.Rotate(0, 0, rotateSpeed * Time.deltaTime);
     }
     else
     {
-      transform.Rotate(0, 0, 0);
+      weapon.transform.Rotate(0, 0, 0);
     }
   }
 
