@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 1bbbc3ef34b87fd4d82df89f7a00cb93
+guid: d390ff21da5967c4dbcf102c7e3822c4
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -100,35 +100,11 @@ TextureImporter:
     overridden: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
-  - serializedVersion: 3
-    buildTarget: WebGL
-    maxTextureSize: 2048
-    resizeAlgorithm: 0
-    textureFormat: -1
-    textureCompression: 1
-    compressionQuality: 50
-    crunchedCompression: 0
-    allowsAlphaSplitting: 0
-    overridden: 0
-    androidETC2FallbackOverride: 0
-    forceMaximumCompressionQuality_BC6H_BC7: 0
-  - serializedVersion: 3
-    buildTarget: Windows Store Apps
-    maxTextureSize: 2048
-    resizeAlgorithm: 0
-    textureFormat: -1
-    textureCompression: 1
-    compressionQuality: 50
-    crunchedCompression: 0
-    allowsAlphaSplitting: 0
-    overridden: 0
-    androidETC2FallbackOverride: 0
-    forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: playerIdle_0
+      name: roll_0
       rect:
         serializedVersion: 2
         x: 0
@@ -142,14 +118,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 2b223d913640e9c4988be5d392023b70
-      internalID: -1610933627
+      spriteID: 3477eaed5bd08f64685da460d4ac667e
+      internalID: 1707233265
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: playerIdle_1
+      name: roll_1
       rect:
         serializedVersion: 2
         x: 102
@@ -163,14 +139,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: c4240a69a4f1a4e45bc62b4d3660867f
-      internalID: -981450548
+      spriteID: 6a6ad908eb0f88e499c162d9e2a04405
+      internalID: -1229207333
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: playerIdle_2
+      name: roll_2
       rect:
         serializedVersion: 2
         x: 204
@@ -184,14 +160,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 48fbf5cf5f41e4d4b89c52dc9f764fbf
-      internalID: -1049306761
+      spriteID: d13c12e97b791694f8d8f307bb0953bb
+      internalID: 1341880350
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: playerIdle_3
+      name: roll_3
       rect:
         serializedVersion: 2
         x: 306
@@ -205,8 +181,50 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: c3273f38efc33ef4d919b62892024065
-      internalID: 695650370
+      spriteID: 014d33696e4f8e14698c3922ccca5561
+      internalID: 1055103428
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: roll_4
+      rect:
+        serializedVersion: 2
+        x: 408
+        y: 0
+        width: 102
+        height: 90
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: eeb212471de187145b18ab36eb608c76
+      internalID: -712515352
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: roll_5
+      rect:
+        serializedVersion: 2
+        x: 510
+        y: 0
+        width: 102
+        height: 90
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6f543f411dff4524b9eb0c0985d307f1
+      internalID: 743475136
       vertices: []
       indices: 
       edges: []
@@ -222,10 +240,12 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      playerIdle_0: -1610933627
-      playerIdle_3: 695650370
-      playerIdle_2: -1049306761
-      playerIdle_1: -981450548
+      roll_1: -1229207333
+      roll_5: 743475136
+      roll_3: 1055103428
+      roll_4: -712515352
+      roll_2: 1341880350
+      roll_0: 1707233265
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0

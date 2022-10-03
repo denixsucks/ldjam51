@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 1bbbc3ef34b87fd4d82df89f7a00cb93
+guid: 9ef4b9d31ece8ef4faa90198e4fff179
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -100,35 +100,11 @@ TextureImporter:
     overridden: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
-  - serializedVersion: 3
-    buildTarget: WebGL
-    maxTextureSize: 2048
-    resizeAlgorithm: 0
-    textureFormat: -1
-    textureCompression: 1
-    compressionQuality: 50
-    crunchedCompression: 0
-    allowsAlphaSplitting: 0
-    overridden: 0
-    androidETC2FallbackOverride: 0
-    forceMaximumCompressionQuality_BC6H_BC7: 0
-  - serializedVersion: 3
-    buildTarget: Windows Store Apps
-    maxTextureSize: 2048
-    resizeAlgorithm: 0
-    textureFormat: -1
-    textureCompression: 1
-    compressionQuality: 50
-    crunchedCompression: 0
-    allowsAlphaSplitting: 0
-    overridden: 0
-    androidETC2FallbackOverride: 0
-    forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: playerIdle_0
+      name: attack1_0
       rect:
         serializedVersion: 2
         x: 0
@@ -142,14 +118,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 2b223d913640e9c4988be5d392023b70
-      internalID: -1610933627
+      spriteID: f256b0e839b998047b07a6d86f745cf2
+      internalID: 1431478829
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: playerIdle_1
+      name: attack1_1
       rect:
         serializedVersion: 2
         x: 102
@@ -163,14 +139,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: c4240a69a4f1a4e45bc62b4d3660867f
-      internalID: -981450548
+      spriteID: b8ae955284f85b14287a332404bb15a1
+      internalID: 660622469
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: playerIdle_2
+      name: attack1_2
       rect:
         serializedVersion: 2
         x: 204
@@ -184,14 +160,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 48fbf5cf5f41e4d4b89c52dc9f764fbf
-      internalID: -1049306761
+      spriteID: ee6a5e8dcb6d20046ae3eb0c02d85ac0
+      internalID: 784887060
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: playerIdle_3
+      name: attack1_3
       rect:
         serializedVersion: 2
         x: 306
@@ -205,8 +181,71 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: c3273f38efc33ef4d919b62892024065
-      internalID: 695650370
+      spriteID: 87339c881ecb830499a14d70497c666d
+      internalID: 1555744536
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: attack1_4
+      rect:
+        serializedVersion: 2
+        x: 408
+        y: 0
+        width: 102
+        height: 90
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 01895321c6ce9ae459ea4844d8710911
+      internalID: 1841767496
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: attack1_5
+      rect:
+        serializedVersion: 2
+        x: 510
+        y: 0
+        width: 102
+        height: 90
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 565fb9e0e71220344adf04b5e0b1e1f5
+      internalID: -1264870523
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: attack1_6
+      rect:
+        serializedVersion: 2
+        x: 612
+        y: 0
+        width: 102
+        height: 90
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7c91b8ceb489e724398cb67b9116db06
+      internalID: -35725634
       vertices: []
       indices: 
       edges: []
@@ -222,10 +261,13 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      playerIdle_0: -1610933627
-      playerIdle_3: 695650370
-      playerIdle_2: -1049306761
-      playerIdle_1: -981450548
+      attack1_5: -1264870523
+      attack1_2: 784887060
+      attack1_1: 660622469
+      attack1_6: -35725634
+      attack1_0: 1431478829
+      attack1_3: 1555744536
+      attack1_4: 1841767496
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0

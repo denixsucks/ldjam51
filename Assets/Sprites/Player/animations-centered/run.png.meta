@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 1bbbc3ef34b87fd4d82df89f7a00cb93
+guid: 6996503f6ef0cd5448f0f4e91555ada5
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -100,35 +100,11 @@ TextureImporter:
     overridden: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
-  - serializedVersion: 3
-    buildTarget: WebGL
-    maxTextureSize: 2048
-    resizeAlgorithm: 0
-    textureFormat: -1
-    textureCompression: 1
-    compressionQuality: 50
-    crunchedCompression: 0
-    allowsAlphaSplitting: 0
-    overridden: 0
-    androidETC2FallbackOverride: 0
-    forceMaximumCompressionQuality_BC6H_BC7: 0
-  - serializedVersion: 3
-    buildTarget: Windows Store Apps
-    maxTextureSize: 2048
-    resizeAlgorithm: 0
-    textureFormat: -1
-    textureCompression: 1
-    compressionQuality: 50
-    crunchedCompression: 0
-    allowsAlphaSplitting: 0
-    overridden: 0
-    androidETC2FallbackOverride: 0
-    forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: playerIdle_0
+      name: run_0
       rect:
         serializedVersion: 2
         x: 0
@@ -142,14 +118,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 2b223d913640e9c4988be5d392023b70
-      internalID: -1610933627
+      spriteID: 06990fafae77bee41926f45426cf8f31
+      internalID: 1564312597
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: playerIdle_1
+      name: run_1
       rect:
         serializedVersion: 2
         x: 102
@@ -163,14 +139,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: c4240a69a4f1a4e45bc62b4d3660867f
-      internalID: -981450548
+      spriteID: 0d6c4c86297197841a5e032329f303c1
+      internalID: -1909104787
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: playerIdle_2
+      name: run_2
       rect:
         serializedVersion: 2
         x: 204
@@ -184,14 +160,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 48fbf5cf5f41e4d4b89c52dc9f764fbf
-      internalID: -1049306761
+      spriteID: 54aed4a02cdda46408a3861dca830e72
+      internalID: -884940137
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: playerIdle_3
+      name: run_3
       rect:
         serializedVersion: 2
         x: 306
@@ -205,8 +181,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: c3273f38efc33ef4d919b62892024065
-      internalID: 695650370
+      spriteID: cb892da116fff03438240047a1768f00
+      internalID: 1537211288
       vertices: []
       indices: 
       edges: []
@@ -222,10 +198,10 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      playerIdle_0: -1610933627
-      playerIdle_3: 695650370
-      playerIdle_2: -1049306761
-      playerIdle_1: -981450548
+      run_1: -1909104787
+      run_2: -884940137
+      run_0: 1564312597
+      run_3: 1537211288
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0
