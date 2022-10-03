@@ -20,4 +20,9 @@ public class Levels : MonoBehaviour
         getNextLevel(levelList.Count);
         player.transform.position = levelList[levelIndex].transform.position;
     }
+
+    void SetActiveLevel()
+    {
+        
+    }
 }

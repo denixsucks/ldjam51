@@ -54,11 +54,11 @@ public class TimeCounter : MonoBehaviour
     animShader.SetBool("isLevelLoading", false);
     animShader.SetBool("isLevelStarted", true);
     anim.SetBool("isPortal", false);
-    yield return new WaitForSeconds(levelLoadTime - levelLoadTime / 2f);
+    yield return new WaitForSeconds(2f);
     animShader.SetBool("isLevelStarted", false);
     anim.SetBool("isPortal2", true);
     resetTimer();
-    yield return new WaitForSeconds(levelLoadTime - levelLoadTime / 2f);
+    yield return new WaitForSeconds(1f);
     anim.SetBool("isPortal2", false);
     stick.SetActive(true);
     player.releasePlayer();

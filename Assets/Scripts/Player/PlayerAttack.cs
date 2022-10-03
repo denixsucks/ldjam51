@@ -8,7 +8,7 @@ public class PlayerAttack : MonoBehaviour
   [Header("Attack")]
   public float waitTimeForCombo = 0.5f;
   public float attackDamage = 1f;
-  int attackIndex = 0;
+  public int attackIndex = 0;
   public bool canAttack = true;
   bool timerIsOn = false;
   float timer;
@@ -26,12 +26,14 @@ public class PlayerAttack : MonoBehaviour
   }
   void Update()
   {
+       /* 
     if (!canAttack && attackIndex != 2)
     {
       anim.SetBool("isWalking", false);
-      move.activeMoveSpeed = 3f;
+      move.activeMoveSpeed = 10f;
     }
-    if (Input.GetMouseButtonDown(0) && canAttack && !move.frozen)
+       */
+        if (Input.GetMouseButtonDown(0) && canAttack && !move.frozen)
     {
       StartCoroutine(Attack());
       timerIsOn = true;
@@ -46,8 +48,8 @@ public class PlayerAttack : MonoBehaviour
     {
       resetTimer();
     }
-
-  }
+        
+    }
   void hideStickForAttack()
   {
     if(!playerThrow.canCallBack)
@@ -63,7 +65,7 @@ public class PlayerAttack : MonoBehaviour
       canAttack = false;
       anim.SetInteger("comboCount", 0);
       anim.SetBool("isAttacking", true);
-      moveForward(1.5f);
+      moveForward(0.4f);
       move.canFlip = false;
       giveDamage();
       yield return new WaitForSeconds(0.2f);
@@ -82,7 +84,7 @@ public class PlayerAttack : MonoBehaviour
       canAttack = false;
       anim.SetInteger("comboCount", 1);
       anim.SetBool("isAttacking", true);
-      moveForward(1.5f);
+      moveForward(0.4f);
       move.canFlip = false;
       giveDamage();
       yield return new WaitForSeconds(0.3f);
@@ -102,7 +104,7 @@ public class PlayerAttack : MonoBehaviour
       anim.SetInteger("comboCount", 2);
       anim.SetBool("isAttacking", true);
       move.activeMoveSpeed = 2f;
-      moveForward(2f);
+      moveForward(0.4f);
       giveDamage();
       move.canFlip = false;
       yield return new WaitForSeconds(0.4f);
