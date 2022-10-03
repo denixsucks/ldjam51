@@ -1262,6 +1262,7 @@ MonoBehaviour:
   timerText: {fileID: 510020227}
   anim: {fileID: 1865599045}
   animShader: {fileID: 109366012}
+  stick: {fileID: 1323404789}
 --- !u!4 &1157873186
 Transform:
   m_ObjectHideFlags: 0
@@ -2165,6 +2166,8 @@ MonoBehaviour:
   attackDamage: 1
   canAttack: 1
   move: {fileID: 1865599042}
+  playerThrow: {fileID: 1865599047}
+  stick: {fileID: 1323404789}
   anim: {fileID: 1865599045}
   cam: {fileID: 648429284}
 --- !u!114 &1865599047
@@ -2191,6 +2194,7 @@ MonoBehaviour:
   gameCam: {fileID: 648429284}
   canThrow: 1
   move: {fileID: 1865599042}
+  attack: {fileID: 1865599046}
   weaponFlipped: 0
 --- !u!1 &1885330404
 GameObject:
