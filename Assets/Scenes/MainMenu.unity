@@ -455,6 +455,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   SceneTransition: {fileID: 849057379}
+  boxOne: {fileID: 849057379}
+  boxTwo: {fileID: 1972970296}
+  boxThree: {fileID: 2107612489}
   inputKeys: 0
 --- !u!4 &641058671
 Transform:
@@ -654,7 +657,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 76c392e42b5098c458856cdf6ecaaaa1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_FirstSelected: {fileID: 0}
+  m_FirstSelected: {fileID: 849057379}
   m_sendNavigationEvents: 1
   m_DragThreshold: 10
 --- !u!4 &1295081097

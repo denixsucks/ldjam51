@@ -8,24 +8,61 @@ public class MainMenu : MonoBehaviour
     //public Animator anim;
     public GameObject SceneTransition;
 
+    [Header("ButonBox")]
+    public GameObject boxOne;
+    public GameObject boxTwo;
+    public GameObject boxThree;
+
     [Header("MenuChoosing")]
     public int inputKeys = 0;
 
 
     public void Update()
     {
-        if (inputKeys == 1 && Input.GetKeyDown(KeyCode.Space))
+        if (inputKeys == 1)
         {
-            Debug.Log("ha");
+            boxOne.transform.localScale = Vector2.Lerp(boxOne.transform.localScale, new Vector2(2, 1.05f), Time.deltaTime * 5);
+            boxTwo.transform.localScale = Vector2.Lerp(boxTwo.transform.localScale, new Vector2(1, 1), Time.deltaTime * 20);
+            //boxOne.transform.localScale = new Vector2(2, 1);
+            //boxTwo.transform.localScale = new Vector2(1, 1);
+            //boxOne.transform.localScale = new Vector2(Mathf.Abs(Mathf.Sin(Time.time) * 2), 1);
+            
+            if (Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown(KeyCode.KeypadEnter))
+            {
+                Debug.Log("Buton " + inputKeys + " is Running");
+                FirstScene();
+                Debug.Log("ha");
+            }
         }
-        if (inputKeys == 2 && Input.GetKeyDown(KeyCode.KeypadEnter))
+        if (inputKeys == 2)
         {
-            Credits();
+            boxOne.transform.localScale = Vector2.Lerp(boxOne.transform.localScale, new Vector2(1, 1), Time.deltaTime * 20);
+            boxTwo.transform.localScale = Vector2.Lerp(boxTwo.transform.localScale, new Vector2(2, 1.05f), Time.deltaTime * 5);
+            boxThree.transform.localScale = Vector2.Lerp(boxThree.transform.localScale, new Vector2(1, 1), Time.deltaTime * 20);
+            //boxTwo.transform.localScale = new Vector2(2, 1);
+            //boxOne.transform.localScale = new Vector2(1, 1);
+            //boxThree.transform.localScale = new Vector2(1, 1);
+            if (Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown(KeyCode.KeypadEnter))
+            {
+                Debug.Log("Buton " + inputKeys + " is Running");
+                Credits();
+                boxTwo.transform.localScale = Vector2.Lerp(boxTwo.transform.localScale, new Vector2(0f, 1), Time.deltaTime * 5);
+            }
         }
-        if (inputKeys == 3 && Input.GetKeyDown(KeyCode.KeypadEnter))
+        if (inputKeys == 3)
         {
-            QuitGame();
+            boxTwo.transform.localScale = Vector2.Lerp(boxTwo.transform.localScale, new Vector2(1, 1), Time.deltaTime * 20);
+            boxThree.transform.localScale = Vector2.Lerp(boxThree.transform.localScale, new Vector2(2, 1.05f), Time.deltaTime * 5);
+            //boxThree.transform.localScale = new Vector2(2, 1);
+            //boxTwo.transform.localScale = new Vector2(1, 1);
+
+            if (Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown(KeyCode.KeypadEnter))
+            {
+                Debug.Log("Buton " + inputKeys + " is Running");
+                QuitGame();
+            }
         }
+
 
         if (Input.GetKeyDown(KeyCode.S) || Input.GetKeyDown(KeyCode.DownArrow))
         {
