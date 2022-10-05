@@ -15,7 +15,8 @@ public class TimeCounter : MonoBehaviour
   public Animator anim;
   public Animator animShader;
   public GameObject stick;
-
+    public AudioSource portal;
+    public AudioSource portal2;
   void Awake()
   {
     if (Instance != null && Instance != this)
@@ -48,14 +49,16 @@ public class TimeCounter : MonoBehaviour
     stick.SetActive(false);
     anim.SetBool("isPortal", true);
     animShader.SetBool("isLevelLoading", true);
+    portal.Play();
     yield return new WaitForSeconds(levelLoadTime - levelLoadTime / 2f);
-    yield return new WaitForSeconds(levelLoadTime - levelLoadTime / 2f);
+    //yield return new WaitForSeconds(levelLoadTime - levelLoadTime / 2f);
     levelChanger.teleportPlayerToArea();
     animShader.SetBool("isLevelLoading", false);
     animShader.SetBool("isLevelStarted", true);
     anim.SetBool("isPortal", false);
     yield return new WaitForSeconds(2f);
     animShader.SetBool("isLevelStarted", false);
+        portal2.Play();
     anim.SetBool("isPortal2", true);
     resetTimer();
     yield return new WaitForSeconds(1f);
