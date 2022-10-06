@@ -4,6 +4,12 @@ using UnityEngine;
 using UnityEngine.UI;
 public class TimeCounter : MonoBehaviour
 {
+
+    [Header("TimerUI")]
+    public Image timerImage;
+    public Image timerBackground;
+
+  
   public static TimeCounter Instance { get; private set; }
   const float startTime = 10f;
   const float levelLoadTime = 4f;
@@ -30,8 +36,10 @@ public class TimeCounter : MonoBehaviour
     }
   }
   void Update()
-  {
-    if (currentTime <= 0 && !isLevelChanging)
+    {
+        timerImage.fillAmount = Mathf.InverseLerp(0, startTime, currentTime);
+
+        if (currentTime <= 0 && !isLevelChanging)
     {
       currentTime = 0f;
       StartCoroutine("levelChange");
@@ -50,6 +58,7 @@ public class TimeCounter : MonoBehaviour
     anim.SetBool("isPortal", true);
     animShader.SetBool("isLevelLoading", true);
     portal.Play();
+
     yield return new WaitForSeconds(levelLoadTime - levelLoadTime / 2f);
     //yield return new WaitForSeconds(levelLoadTime - levelLoadTime / 2f);
     levelChanger.teleportPlayerToArea();

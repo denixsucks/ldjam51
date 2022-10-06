@@ -11,7 +11,7 @@ public class PlayerMovement : MonoBehaviour
   bool canDash = true;
   public bool frozen = false;
   float currentDashTime;
-
+  public bool isMoving;
 
 
   [Header("Movement")]
@@ -36,8 +36,8 @@ public class PlayerMovement : MonoBehaviour
   }
 
   void Update()
-  {
-    var direction = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical"));
+    {
+        var direction = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical"));
     if(Input.GetKeyDown(KeyCode.LeftShift) && canDash && !frozen) {
       anim.SetBool("isDashing", true);
       StartCoroutine(Dash(direction));
