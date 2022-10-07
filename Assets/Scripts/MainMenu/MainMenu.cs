@@ -15,6 +15,7 @@ public class MainMenu : MonoBehaviour
 
     [Header("MenuChoosing")]
     public int inputKeys = 0;
+    public bool isActive;
     public bool isSelected1;
     public bool isSelected2;
     public bool isSelected3;
@@ -101,23 +102,29 @@ public class MainMenu : MonoBehaviour
         }
 
 
-        
-
+        if (isActive == false)
+        {
+            inputKeys = Mathf.Clamp(inputKeys, 0, 3);
+        }else
+        inputKeys = Mathf.Clamp(inputKeys, 1, 3);
 
         if (Input.GetKeyDown(KeyCode.S) || Input.GetKeyDown(KeyCode.DownArrow))
         {
+            isActive = true;
             inputKeys += 1;
-
+            /*
             if (inputKeys == 4)
             {
                 inputKeys = 3;
             }
+            */
         }
 
         if (Input.GetKeyDown(KeyCode.W) || Input.GetKeyDown(KeyCode.UpArrow))
         {
+            isActive = true;
             inputKeys -= 1;
-
+            /*
             if (inputKeys == 0)
             {
                 inputKeys = 1;
@@ -126,6 +133,7 @@ public class MainMenu : MonoBehaviour
             {
                 inputKeys = 0;
             }
+            */
         }
     }
     public void FirstScene()
